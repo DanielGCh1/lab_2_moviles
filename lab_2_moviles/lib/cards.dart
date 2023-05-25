@@ -6,31 +6,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Tarjetas con Imágenes',
+      title: 'Tarjetas',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Lista de Imágenes'),
+          title: Text('Tarjetas'),
         ),
         body: OrientationBuilder(
           builder: (context, orientation) {
             return GridView.count(
               crossAxisCount: orientation == Orientation.portrait ? 3 : 6,
-              children: List.generate(100, (index) {
+              children: List.generate(12, (index) {
                 return Card(
                   color: index % 2 == 0 ? Colors.blue : Colors.green,
-                  child: Column(
-                    children: [
-                      AspectRatio(
-                        aspectRatio: 1, // Proporción de aspecto de la imagen
-                        child: Image.asset(
-                          'assets/images/arbol.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ],
+                  child: Center(
+                    child: Text(
+                      'Tarjeta $index',
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                 );
               }),
@@ -41,3 +36,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
