@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lab_2_moviles/screens/MansoryLayout.dart';
+import 'package:lab_2_moviles/screens/mansory_layout.dart';
 
 void main() {
   runApp(MyApp());

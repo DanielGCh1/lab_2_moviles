@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:lab_2_moviles/services/APIService.dart';
-import 'package:lab_2_moviles/widgets/CategoryDrawer.dart';
-import 'package:lab_2_moviles/widgets/ImageItem.dart';
+import 'package:lab_2_moviles/services/api_service.dart';
+import 'package:lab_2_moviles/widgets/category_drawer.dart';
+import 'package:lab_2_moviles/widgets/image_item.dart';
 
 class MasonryLayout extends StatefulWidget {
   final Orientation orientation;
