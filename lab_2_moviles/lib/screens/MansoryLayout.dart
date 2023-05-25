@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:lab_2_moviles/services/APIService.dart';
 import 'package:lab_2_moviles/widgets/CategoryDrawer.dart';
@@ -82,7 +81,7 @@ class _MasonryLayoutState extends State<MasonryLayout>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PinFinity'),
+        title: const Text('PinFinity'),
       ),
       drawer: CategoryDrawer(
         selectedCategory: selectedCategory,
@@ -98,7 +97,7 @@ class _MasonryLayoutState extends State<MasonryLayout>
                 return AnimationLimiter(
                   child: StaggeredGridView.countBuilder(
                     controller: _scrollController,
-                    physics: AlwaysScrollableScrollPhysics(),
+                    physics: const AlwaysScrollableScrollPhysics(),
                     crossAxisCount: crossAxisCount,
                     itemCount: images.length + 1,
                     itemBuilder: (BuildContext context, int index) {
@@ -112,10 +111,9 @@ class _MasonryLayoutState extends State<MasonryLayout>
                       } else if (isLoading) {
                         return Container(
                           alignment: Alignment.center,
-                          padding: EdgeInsets.all(16.0),
-                          child: SpinKitCircle(
+                          padding: const EdgeInsets.all(16.0),
+                          child: const CircularProgressIndicator(
                             color: Colors.blue,
-                            size: 50.0,
                           ),
                         );
                       } else {

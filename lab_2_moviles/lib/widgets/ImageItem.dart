@@ -14,12 +14,16 @@ class ImageItem extends StatelessWidget {
     required this.index,
   });
 
+  static const animationDuration = Duration(milliseconds: 500);
+
   @override
   Widget build(BuildContext context) {
+    final borderRadius = BorderRadius.circular(8.0);
+
     return AnimationConfiguration.staggeredGrid(
       position: index,
       columnCount: crossAxisCount,
-      duration: const Duration(milliseconds: 500),
+      duration: animationDuration,
       child: ScaleAnimation(
         child: FadeInAnimation(
           child: SlideAnimation(
@@ -27,7 +31,7 @@ class ImageItem extends StatelessWidget {
             child: Container(
               margin: EdgeInsets.all(8.0),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: borderRadius,
                 child: Image.network(
                   imageUrl,
                   fit: BoxFit.cover,

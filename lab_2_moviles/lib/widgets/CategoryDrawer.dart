@@ -4,11 +4,19 @@ class CategoryDrawer extends StatelessWidget {
   final String selectedCategory;
   final Function(String) onCategorySelected;
 
-  const CategoryDrawer({
+  CategoryDrawer({
     Key? key,
     required this.selectedCategory,
     required this.onCategorySelected,
   }) : super(key: key);
+
+  final List<Map<String, String>> categories = [
+    {'title': 'All', 'category': 'All'},
+    {'title': 'Nature', 'category': 'Nature'},
+    {'title': 'Food', 'category': 'Food'},
+    {'title': 'Architecture', 'category': 'Architecture'},
+    {'title': 'Travel', 'category': 'Travel'},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -22,46 +30,16 @@ class CategoryDrawer extends StatelessWidget {
           ListTile(
             title: Text('Filtros'),
           ),
-          ListTile(
-            title: Text('All'),
-            onTap: () {
-              Navigator.pop(context);
-              onCategorySelected('All');
-            },
-            selected: selectedCategory == 'All',
-          ),
-          ListTile(
-            title: Text('Nature'),
-            onTap: () {
-              Navigator.pop(context);
-              onCategorySelected('Nature');
-            },
-            selected: selectedCategory == 'Nature',
-          ),
-          ListTile(
-            title: Text('Food'),
-            onTap: () {
-              Navigator.pop(context);
-              onCategorySelected('Food');
-            },
-            selected: selectedCategory == 'Food',
-          ),
-          ListTile(
-            title: Text('Architecture'),
-            onTap: () {
-              Navigator.pop(context);
-              onCategorySelected('Architecture');
-            },
-            selected: selectedCategory == 'Architecture',
-          ),
-          ListTile(
-            title: Text('Travel'),
-            onTap: () {
-              Navigator.pop(context);
-              onCategorySelected('Travel');
-            },
-            selected: selectedCategory == 'Travel',
-          ),
+          ...categories.map((category) {
+            return ListTile(
+              title: Text(category['title']!),
+              onTap: () {
+                Navigator.pop(context);
+                onCategorySelected(category['category']!);
+              },
+              selected: selectedCategory == category['category'],
+            );
+          }).toList(),
         ],
       ),
     );
