@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lab_2_moviles/utilis/colors.dart';
 
 class CategoryDrawer extends StatelessWidget {
   final String selectedCategory;
@@ -32,7 +33,7 @@ class CategoryDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: Colors.teal.shade400,
+        color: AppColors.menuSubColor,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -43,7 +44,7 @@ class CategoryDrawer extends StatelessWidget {
                   Text(
                     'Filtros',
                     style: TextStyle(
-                        color: Colors.white,
+                        color: AppColors.textActColor,
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Georgia'),
@@ -63,15 +64,15 @@ class CategoryDrawer extends StatelessWidget {
                   },
                   child: Container(
                     color: selectedCategory == category['category']
-                        ? Colors.teal
+                        ? AppColors.menuPriColor
                         : Colors.transparent,
                     child: ListTile(
                       title: Text(
                         category['title']!,
                         style: TextStyle(
                             color: selectedCategory == category['category']
-                                ? Colors.white
-                                : Colors.white70,
+                                ? AppColors.textActColor
+                                : AppColors.textDesColor,
                             fontSize: 16.0,
                             fontFamily: 'Georgia'),
                       ),
@@ -85,7 +86,7 @@ class CategoryDrawer extends StatelessWidget {
                     16.0), // Espacio vertical entre las categorías y los nombres de los desarrolladores
 
             Container(
-              color: Colors.teal,
+              color: AppColors.menuPriColor,
               child: Column(
                 children: [
                   ListTile(
@@ -93,7 +94,7 @@ class CategoryDrawer extends StatelessWidget {
                       '\nLABORATORIO 2 \n\nEstudiantes:',
                       textAlign: TextAlign.center, // Centra el texto
                       style: TextStyle(
-                          color: Colors.white,
+                          color: AppColors.textActColor,
                           fontSize: 16.0,
                           fontFamily: 'Times New Roman'),
                     ),
@@ -103,7 +104,7 @@ class CategoryDrawer extends StatelessWidget {
                       'Daniel Gómez\n\nNatalia Rojas\n\nDiego Jiménez\n\nLibny Gómez\n\n',
                       textAlign: TextAlign.center, // Centra el texto
                       style: TextStyle(
-                          color: Colors.white70,
+                          color: AppColors.textDesColor,
                           fontSize: 16.0,
                           fontFamily: 'Times New Roman'),
                     ),

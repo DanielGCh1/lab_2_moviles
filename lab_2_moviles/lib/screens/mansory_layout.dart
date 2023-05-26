@@ -5,6 +5,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:lab_2_moviles/services/api_service.dart';
 import 'package:lab_2_moviles/widgets/category_drawer.dart';
 import 'package:lab_2_moviles/widgets/image_item.dart';
+import 'package:lab_2_moviles/utilis/colors.dart';
 
 class MasonryLayout extends StatefulWidget {
   final Orientation orientation;
@@ -116,7 +117,7 @@ class _MasonryLayoutState extends State<MasonryLayout>
                           alignment: Alignment.center,
                           padding: const EdgeInsets.all(16.0),
                           child: const CircularProgressIndicator(
-                            color: Colors.teal,
+                            color: AppColors.menuPriColor,
                           ),
                         );
                       } else {
