@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lab_2_moviles/utilis/colors.dart';
+import 'category_item.dart';
+import 'students_list.dart';
 
 class CategoryDrawer extends StatelessWidget {
   final String selectedCategory;
@@ -29,6 +31,7 @@ class CategoryDrawer extends StatelessWidget {
     {'title': 'Cars', 'category': 'Cars'},
     {'title': 'Books', 'category': 'Books'}
   ];
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -44,10 +47,11 @@ class CategoryDrawer extends StatelessWidget {
                   Text(
                     'Filtros',
                     style: TextStyle(
-                        color: AppColors.textActColor,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Georgia'),
+                      color: AppColors.textActColor,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Georgia',
+                    ),
                   ),
                 ],
               ),
@@ -55,63 +59,15 @@ class CategoryDrawer extends StatelessWidget {
               currentAccountPicture: null,
             ),
             ...categories.map((category) {
-              return MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                    onCategorySelected(category['category']!);
-                  },
-                  child: Container(
-                    color: selectedCategory == category['category']
-                        ? AppColors.menuPriColor
-                        : Colors.transparent,
-                    child: ListTile(
-                      title: Text(
-                        category['title']!,
-                        style: TextStyle(
-                            color: selectedCategory == category['category']
-                                ? AppColors.textActColor
-                                : AppColors.textDesColor,
-                            fontSize: 16.0,
-                            fontFamily: 'Georgia'),
-                      ),
-                    ),
-                  ),
-                ),
+              return CategoryItem(
+                title: category['title']!,
+                category: category['category']!,
+                isSelected: selectedCategory == category['category'],
+                onTap: onCategorySelected,
               );
             }).toList(),
-            SizedBox(
-                height:
-                    16.0), // Espacio vertical entre las categorías y los nombres de los desarrolladores
-
-            Container(
-              color: AppColors.menuPriColor,
-              child: Column(
-                children: [
-                  ListTile(
-                    title: Text(
-                      '\nLABORATORIO 2 \n\nEstudiantes:',
-                      textAlign: TextAlign.center, // Centra el texto
-                      style: TextStyle(
-                          color: AppColors.textActColor,
-                          fontSize: 16.0,
-                          fontFamily: 'Times New Roman'),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      'Daniel Gómez\n\nNatalia Rojas\n\nDiego Jiménez\n\nLibny Gómez\n\n',
-                      textAlign: TextAlign.center, // Centra el texto
-                      style: TextStyle(
-                          color: AppColors.textDesColor,
-                          fontSize: 16.0,
-                          fontFamily: 'Times New Roman'),
-                    ),
-                  ),
-                ],
-              ),
-            )
+            SizedBox(height: 16.0),
+            StudentsList(),
           ],
         ),
       ),

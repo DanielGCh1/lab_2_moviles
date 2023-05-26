@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:lab_2_moviles/services/api_service.dart';
 import 'package:lab_2_moviles/widgets/category_drawer.dart';
-import 'package:lab_2_moviles/widgets/image_item.dart';
-import 'package:lab_2_moviles/utilis/colors.dart';
+import 'package:lab_2_moviles/widgets/masonry_grid_view.dart';
 
 class MasonryLayout extends StatefulWidget {
   final Orientation orientation;
@@ -93,48 +90,13 @@ class _MasonryLayoutState extends State<MasonryLayout>
           Expanded(
             child: OrientationBuilder(
               builder: (context, orientation) {
-                final crossAxisCount =
-                    MediaQuery.of(context).orientation == Orientation.portrait
-                        ? 3
-                        : 6;
-                orientation == Orientation.portrait ? 3 : 6;
-                return AnimationLimiter(
-                  child: StaggeredGridView.countBuilder(
-                    controller: _scrollController,
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    crossAxisCount: crossAxisCount,
-                    itemCount: images.length + 1,
-                    itemBuilder: (BuildContext context, int index) {
-                      if (index < images.length) {
-                        return ImageItem(
-                          imageUrl: images[index],
-                          isScrollingDown: isScrollingDown,
-                          crossAxisCount: crossAxisCount,
-                          index: index,
-                        );
-                      } else if (isLoading) {
-                        return Container(
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.all(16.0),
-                          child: const CircularProgressIndicator(
-                            color: AppColors.menuPriColor,
-                          ),
-                        );
-                      } else {
-                        return Container();
-                      }
-                    },
-                    staggeredTileBuilder: (int index) {
-                      if (index < images.length) {
-                        return StaggeredTile.fit(
-                            orientation == Orientation.portrait ? 1 : 2);
-                      } else {
-                        return StaggeredTile.count(crossAxisCount, 1);
-                      }
-                    },
-                    mainAxisSpacing: 8.0,
-                    crossAxisSpacing: 8.0,
-                  ),
+                return MasonryGridView(
+                  scrollController: _scrollController,
+                  images: images,
+                  isLoading: isLoading,
+                  isScrollingDown: isScrollingDown,
+                  orientation: orientation,
+                  fetchImages: fetchImages,
                 );
               },
             ),
