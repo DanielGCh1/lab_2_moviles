@@ -81,7 +81,7 @@ class _MasonryLayoutState extends State<MasonryLayout>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PinFinity'),
+        title: Text(selectedCategory, style: TextStyle(fontFamily: 'Georgia')),
       ),
       drawer: CategoryDrawer(
         selectedCategory: selectedCategory,
@@ -93,7 +93,10 @@ class _MasonryLayoutState extends State<MasonryLayout>
             child: OrientationBuilder(
               builder: (context, orientation) {
                 final crossAxisCount =
-                    orientation == Orientation.portrait ? 3 : 6;
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 3
+                        : 6;
+                orientation == Orientation.portrait ? 3 : 6;
                 return AnimationLimiter(
                   child: StaggeredGridView.countBuilder(
                     controller: _scrollController,
@@ -113,7 +116,7 @@ class _MasonryLayoutState extends State<MasonryLayout>
                           alignment: Alignment.center,
                           padding: const EdgeInsets.all(16.0),
                           child: const CircularProgressIndicator(
-                            color: Colors.blue,
+                            color: Colors.teal,
                           ),
                         );
                       } else {
